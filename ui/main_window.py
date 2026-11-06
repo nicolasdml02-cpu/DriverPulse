@@ -1,6 +1,7 @@
 import sys
+import os
 from PyQt6.QtCore import Qt, QUrl
-from PyQt6.QtGui import QDesktopServices
+from PyQt6.QtGui import QDesktopServices, QIcon
 from PyQt6.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, 
     QLabel, QTableWidget, QTableWidgetItem, 
@@ -56,6 +57,12 @@ class DriverPulseWindow(QMainWindow):
         self.setWindowTitle("DriverPulse - Auditoria e Checkout de Drivers")
         self.setGeometry(100, 100, 1150, 650)
         self.setStyleSheet(DRIVER_PULSE_STYLE)
+
+        # Configuração da Logo / Ícone da Janela
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        caminho_icone = os.path.join(base_dir, "assets", "logo.ico")
+        if os.path.exists(caminho_icone):
+            self.setWindowIcon(QIcon(caminho_icone))
 
         self._init_ui()
         self.executar_varredura()
